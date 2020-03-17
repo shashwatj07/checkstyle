@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -159,10 +160,11 @@ public class ElementNode extends AbstractNode {
      * when there is no axis iterator for given axisNumber.
      *
      * @param axisNumber element from {@code AxisInfo}
+     * @param nodeTest filter for iterator
      * @return {@code AxisIterator} object
      */
     @Override
-    public AxisIterator iterateAxis(byte axisNumber) {
+    public AxisIterator iterateAxis(int axisNumber, Predicate<? super NodeInfo> nodeTest) {
         final AxisIterator result;
         switch (axisNumber) {
             case AxisInfo.ANCESTOR:
@@ -188,7 +190,7 @@ public class ElementNode extends AbstractNode {
                     }
                 }
                 else {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
+                    result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT:
@@ -199,7 +201,7 @@ public class ElementNode extends AbstractNode {
                     }
                 }
                 else {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
+                    result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT_OR_SELF:
@@ -283,7 +285,7 @@ public class ElementNode extends AbstractNode {
     private AxisIterator getPrecedingSiblingsIterator() {
         final AxisIterator result;
         if (indexAmongSiblings == 0) {
-            result = EmptyIterator.OfNodes.THE_INSTANCE;
+            result = EmptyIterator.ofNodes();
         }
         else {
             try (AxisIterator iterator = new ArrayIterator.OfNodes(
@@ -301,7 +303,7 @@ public class ElementNode extends AbstractNode {
     private AxisIterator getFollowingSiblingsIterator() {
         final AxisIterator result;
         if (indexAmongSiblings == parent.getChildren().size() - 1) {
-            result = EmptyIterator.OfNodes.THE_INSTANCE;
+            result = EmptyIterator.ofNodes();
         }
         else {
             try (AxisIterator iterator = new ArrayIterator.OfNodes(

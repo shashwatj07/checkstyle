@@ -226,7 +226,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
      * @param event {@code TreeWalkerAuditEvent} object
      * @return list of nodes matching xpath expression given event
      */
-    private List<Item<?>> getItems(TreeWalkerAuditEvent event) {
+    private List<Item> getItems(TreeWalkerAuditEvent event) {
         final RootNode rootNode;
         if (event.getRootAst() == null) {
             rootNode = null;
@@ -234,7 +234,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
         else {
             rootNode = new RootNode(event.getRootAst());
         }
-        final List<Item<?>> items;
+        final List<Item> items;
         try {
             final XPathDynamicContext xpathDynamicContext =
                     xpathExpression.createDynamicContext(rootNode);

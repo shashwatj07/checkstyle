@@ -51,7 +51,7 @@ public final class XpathUtil {
         final XPathExpression xpathExpression = xpathEvaluator.createExpression(xpath);
         final XPathDynamicContext xpathDynamicContext = xpathExpression
                 .createDynamicContext(rootNode);
-        final List<Item<?>> items = xpathExpression.evaluate(xpathDynamicContext);
+        final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
         return items.stream().map(item -> (NodeInfo) item).collect(Collectors.toList());
     }
 
