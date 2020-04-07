@@ -47,6 +47,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
  * ANNOTATION_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
+ * ARRAY_INIT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
  * CLASS_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
@@ -176,6 +178,7 @@ public class LeftCurlyCheck
     public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ARRAY_INIT,
             TokenTypes.CLASS_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
@@ -238,6 +241,7 @@ public class LeftCurlyCheck
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
             case TokenTypes.STATIC_INIT:
+            case TokenTypes.ARRAY_INIT:
             case TokenTypes.LAMBDA:
                 startToken = ast;
                 brace = ast.findFirstToken(TokenTypes.SLIST);

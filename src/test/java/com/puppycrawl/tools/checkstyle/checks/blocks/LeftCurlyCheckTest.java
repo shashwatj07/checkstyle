@@ -370,6 +370,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         final int[] actual = check.getAcceptableTokens();
         final int[] expected = {
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ARRAY_INIT,
             TokenTypes.CLASS_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
